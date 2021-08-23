@@ -1,0 +1,4 @@
+fastapi
+uol-grades-calculator
+uvicorn
+wheel

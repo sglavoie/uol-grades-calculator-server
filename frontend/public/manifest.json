@@ -1,0 +1,8 @@
+{
+  "short_name": "ugc",
+  "name": "ugc: a portal to make sense of UoL grades",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

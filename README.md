@@ -17,7 +17,7 @@ cd backend
 uvicorn main:app --reload
 ```
 
-## Testing changes made to `ugc` before publishing to PyPI
+### Testing changes made to `ugc` before publishing to PyPI
 
 In `backend/requirements.txt`, comment out the line `uol-grades-calculator` and add a new line as follows:
 
@@ -26,3 +26,19 @@ git+https://github.com/sglavoie/uol-grades-calculator@BRANCH_NAME#egg=uol-grades
 ```
 
 The GitHub repository for `ugc` will be cloned when installing the dependencies and the source code will be coming from the branch `BRANCH_NAME`. The bit at the end, `#egg=uol-grades-calculator`, will tell `pip` to install the package with the same name as before: _uol-grades-calculator_.
+
+## Setting up the front-end
+
+Install dependencies:
+
+```bash
+cd frontend
+yarn  # or npm install
+```
+
+Run the server:
+
+```bash
+cd frontend
+yarn start
+```

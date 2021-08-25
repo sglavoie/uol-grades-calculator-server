@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
+import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-const Header: FC = () => {
+const Header = (): JSX.Element => {
   return (
     <div style={{ marginBottom: '5em' }}>
       <Link to="/">Home</Link> -{' '}

@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './components/Header';
 import CheckScoreAccuracy from './components/CheckScoreAccuracy';
 
-function App() {
+const App = (): JSX.Element => {
   return (
     <div className="App">
       <header className="App-header">
@@ -24,6 +24,6 @@ function App() {
       </header>
     </div>
   );
-}
+};
 
 export default App;

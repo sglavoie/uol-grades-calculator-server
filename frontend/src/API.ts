@@ -11,6 +11,15 @@ type summarizeDoneModule = Readonly<{
   module_name: string;
 }>;
 
+type summarizeProgressModule = Readonly<{
+  final_score?: number;
+  final_weight?: number;
+  midterm_score?: number;
+  midterm_weight?: number;
+  level: number;
+  module_name: string;
+}>;
+
 type letterGrades =
   | 'A'
   | 'A-'
@@ -58,6 +67,18 @@ export type summarizeDoneResponse = Readonly<{
   percentage_done: number;
 }>;
 
+export type summarizeProgressResponse = Readonly<{
+  in_progress: {
+    modules: summarizeProgressModule[];
+    weighted_average: number;
+    unweighted_average: number;
+  };
+  average_in_progress_only: {
+    weighted: number;
+    unweighted: number;
+  };
+}>;
+
 const API = {
   checkScoreAccuracy: async (): Promise<checkScoreAccuracyResponse> => {
     const endpoint = `${CONFIG.SERVER_URL}/check/score-accuracy`;
@@ -65,6 +86,10 @@ const API = {
   },
   summarizeDone: async (): Promise<summarizeDoneResponse> => {
     const endpoint = `${CONFIG.SERVER_URL}/summarize/done`;
+    return await (await fetch(endpoint)).json();
+  },
+  summarizeProgress: async (): Promise<summarizeProgressResponse> => {
+    const endpoint = `${CONFIG.SERVER_URL}/summarize/progress`;
     return await (await fetch(endpoint)).json();
   },
 };

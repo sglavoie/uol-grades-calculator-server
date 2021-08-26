@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './components/Header';
 import CheckScoreAccuracy from './components/CheckScoreAccuracy';
 import SummarizeDone from './components/SummarizeDone';
+import SummarizeProgress from './components/SummarizeProgress';
 
 const App = (): JSX.Element => {
   return (
@@ -22,6 +23,9 @@ const App = (): JSX.Element => {
             </Route>
             <Route path="/summarize-done">
               <SummarizeDone />
+            </Route>
+            <Route path="/summarize-progress">
+              <SummarizeProgress />
             </Route>
           </Switch>
         </Router>

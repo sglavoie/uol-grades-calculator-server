@@ -61,8 +61,8 @@ async def summarize_progress():
     return {
         "in_progress": in_progress,
         "average_in_progress_only": {
-            "weighted": progress_only["weighted_average"],
-            "unweighted": progress_only["unweighted_average"],
+            "weighted": progress_only.get("weighted_average"),
+            "unweighted": progress_only.get("unweighted_average"),
         },
     }
 

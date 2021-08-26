@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // Components
 import Header from './components/Header';
 import CheckScoreAccuracy from './components/CheckScoreAccuracy';
+import SummarizeDone from './components/SummarizeDone';
 
 const App = (): JSX.Element => {
   return (
@@ -18,6 +19,9 @@ const App = (): JSX.Element => {
           <Switch>
             <Route path="/check-score-accuracy">
               <CheckScoreAccuracy />
+            </Route>
+            <Route path="/summarize-done">
+              <SummarizeDone />
             </Route>
           </Switch>
         </Router>

@@ -6,7 +6,8 @@ const Header = (): JSX.Element => {
   return (
     <div style={{ marginBottom: '5em' }}>
       <Link to="/">Home</Link> -{' '}
-      <Link to="/check-score-accuracy">Check score accuracy</Link>
+      <Link to="/check-score-accuracy">Check score accuracy</Link> -{' '}
+      <Link to="/summarize-done">Summarize done</Link>
     </div>
   );
 };

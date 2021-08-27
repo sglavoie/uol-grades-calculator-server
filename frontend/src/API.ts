@@ -79,6 +79,15 @@ export type summarizeProgressResponse = Readonly<{
   };
 }>;
 
+export type summarizeAllResponse = Readonly<{
+  done: summarizeDoneResponse;
+  progress: {
+    modules: summarizeProgressModule[];
+    weighted_average: number;
+    unweighted_average: number;
+  };
+}>;
+
 const API = {
   checkScoreAccuracy: async (): Promise<checkScoreAccuracyResponse> => {
     const endpoint = `${CONFIG.SERVER_URL}/check/score-accuracy`;
@@ -90,6 +99,10 @@ const API = {
   },
   summarizeProgress: async (): Promise<summarizeProgressResponse> => {
     const endpoint = `${CONFIG.SERVER_URL}/summarize/progress`;
+    return await (await fetch(endpoint)).json();
+  },
+  summarizeAll: async (): Promise<summarizeAllResponse> => {
+    const endpoint = `${CONFIG.SERVER_URL}/summarize/all`;
     return await (await fetch(endpoint)).json();
   },
 };

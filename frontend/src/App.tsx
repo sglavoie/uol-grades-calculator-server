@@ -5,10 +5,10 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 // Components
-import Header from './components/Header';
 import CheckScoreAccuracy from './components/CheckScoreAccuracy';
 import Header from './components/Header';
 import NotFound from './components/NotFound';
+import SummarizeAll from './components/SummarizeAll';
 import SummarizeDone from './components/SummarizeDone';
 import SummarizeProgress from './components/SummarizeProgress';
 
@@ -31,6 +31,7 @@ const App = (): JSX.Element => {
               path="/summarize-progress"
               component={SummarizeProgress}
             />
+            <Route exact path="/summarize-all" component={SummarizeAll} />
             <Route component={NotFound} />
           </Switch>
         </Router>

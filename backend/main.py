@@ -1,3 +1,5 @@
+import os
+
 # Third-party library imports
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -82,3 +84,14 @@ async def generate_sample(overwrite: bool = False):
     return commands.generate_sample(config)
 
 
+# TODO: Options should be accepted by the API.
+# TODO: "path" just works with a local server. The expected reply would be a
+# PNG image.
+@app.get("/plot/modules")
+async def plot_modules():
+    # Need to pass in a default path, otherwise it would save at the root of
+    # the server
+    # Passing the API flag so that prompt confirmation can be avoided
+    return commands.plot_modules(
+        grades, api=True, options={"path": os.path.expanduser("~")}
+    )

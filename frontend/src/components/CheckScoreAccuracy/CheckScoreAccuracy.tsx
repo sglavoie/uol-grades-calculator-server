@@ -1,8 +1,10 @@
 import React from 'react';
-import useCheckScoreAccuracy from '../../hooks/useCheckScoreAccuracy';
+import useFetch from '../../hooks/useFetch';
+import { checkScoreAccuracyResponse } from '../../types';
 
 const CheckScoreAccuracy = (): JSX.Element => {
-  const { state, error, errorMsg, loading } = useCheckScoreAccuracy();
+  const { state, error, errorMsg, loading } =
+    useFetch<checkScoreAccuracyResponse>('/check/score-accuracy');
 
   if (error) return <div>Error: {errorMsg}</div>;
   if (loading) return <div></div>;

@@ -1,6 +1,6 @@
 import React from 'react';
-import useSummarizeProgress from '../../hooks/useSummarizeProgress';
-import { summarizeProgressResponse } from '../../API';
+import useFetch from '../../hooks/useFetch';
+import { summarizeProgressResponse } from '../../types';
 
 const renderProgressSummary = (
   state: summarizeProgressResponse
@@ -36,7 +36,8 @@ const renderProgressSummary = (
 };
 
 const SummarizeProgress = (): JSX.Element => {
-  const { state, error, errorMsg, loading } = useSummarizeProgress();
+  const { state, error, errorMsg, loading } =
+    useFetch<summarizeProgressResponse>('/summarize/progress');
 
   if (error) return <div>Error: {errorMsg}</div>;
   if (loading) return <div></div>;

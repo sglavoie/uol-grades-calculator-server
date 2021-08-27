@@ -1,6 +1,6 @@
 import React from 'react';
-import useSummarizeAll from '../../hooks/useSummarizeAll';
-import { summarizeAllResponse } from '../../API';
+import useFetch from '../../hooks/useFetch';
+import { summarizeAllResponse } from '../../types';
 
 const renderSummary = (state: summarizeAllResponse): JSX.Element => {
   return (
@@ -63,7 +63,8 @@ const renderSummary = (state: summarizeAllResponse): JSX.Element => {
 };
 
 const SummarizeAll = (): JSX.Element => {
-  const { state, error, errorMsg, loading } = useSummarizeAll();
+  const { state, error, errorMsg, loading } =
+    useFetch<summarizeAllResponse>('/summarize/all');
 
   if (error) return <div>Error: {errorMsg}</div>;
   if (loading) return <div></div>;

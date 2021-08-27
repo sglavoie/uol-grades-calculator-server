@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 # ugc
 from ugc.grades import Grades
+from ugc.config import Config
 from ugc import __version__ as version_ugc
 from ugc import commands
 
@@ -12,6 +13,7 @@ from version import __version__ as version_api
 
 app = FastAPI()
 grades = Grades()
+config = Config()
 
 # Allow CORS
 origins = [
@@ -70,3 +72,13 @@ async def summarize_progress():
 @app.get("/summarize/all")
 async def summarize_all():
     return commands.summarize_all(grades)
+
+# TODO: This endpoint only works locally. The expected reply would be sending a
+# YAML config file.
+@app.get("/generate-sample")
+async def generate_sample(overwrite: bool = False):
+    if overwrite:
+        return commands.generate_sample_overwrite(config)
+    return commands.generate_sample(config)
+
+

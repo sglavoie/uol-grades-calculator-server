@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 import CONFIG from '../config';
 
@@ -18,8 +19,8 @@ const useFetch = <T>(
   const fetchEndpoint = async () => {
     try {
       setError(false);
-      const response = await fetch(`${CONFIG.SERVER_URL}${endpoint}`);
-      const data = await response.json();
+      const response = await axios.get(`${CONFIG.SERVER_URL}${endpoint}`);
+      const data = await response.data;
       setState(() => ({ ...data }));
     } catch (error) {
       console.log(error);

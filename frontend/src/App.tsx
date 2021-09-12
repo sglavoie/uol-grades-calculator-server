@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 
 // Routing
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -11,6 +10,10 @@ import NotFound from './components/NotFound';
 import SummarizeAll from './components/SummarizeAll';
 import SummarizeDone from './components/SummarizeDone';
 import SummarizeProgress from './components/SummarizeProgress';
+import HomePage from './components/HomePage';
+
+// Styles
+import './App.css';
 
 const App = (): JSX.Element => {
   return (
@@ -18,9 +21,8 @@ const App = (): JSX.Element => {
       <header className="App-header">
         <Router>
           <Header />
-
           <Switch>
-            <Route exact path="/" />
+            <Route exact path="/" component={HomePage} />
             <Route
               path="/check-score-accuracy"
               component={CheckScoreAccuracy}

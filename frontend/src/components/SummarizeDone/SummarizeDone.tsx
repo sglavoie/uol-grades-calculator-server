@@ -7,6 +7,7 @@ const renderSummary = (state: summarizeDoneResponse): JSX.Element => {
     <div style={{ padding: '1em' }}>
       {state.modules.map((module) => (
         <div
+          key={module.module_name}
           style={{ border: '1px solid white', padding: '1em', margin: '1em' }}
         >
           <div style={{ fontWeight: 'bold', color: '#a67dff' }}>

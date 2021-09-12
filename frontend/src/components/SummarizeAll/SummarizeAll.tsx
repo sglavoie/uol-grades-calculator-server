@@ -9,6 +9,7 @@ const renderSummary = (state: summarizeAllResponse): JSX.Element => {
       <div style={{ padding: '1em' }}>
         {state.done.modules.map((module) => (
           <div
+            key={module.module_name}
             style={{ border: '1px solid white', padding: '1em', margin: '1em' }}
           >
             <div style={{ fontWeight: 'bold', color: '#a67dff' }}>
@@ -43,6 +44,7 @@ const renderSummary = (state: summarizeAllResponse): JSX.Element => {
       <div style={{ padding: '1em' }}>
         {state.progress.modules.map((module) => (
           <div
+            key={module.module_name}
             style={{ border: '1px solid white', padding: '1em', margin: '1em' }}
           >
             <div style={{ fontWeight: 'bold', color: '#a67dff' }}>

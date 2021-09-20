@@ -13,3 +13,6 @@
 # Ignore all local history of files
 .history
 .ionide
+
+### tmux : ignore script to automate session management ###
+.tmux

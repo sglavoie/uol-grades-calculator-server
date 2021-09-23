@@ -31,4 +31,4 @@ const CheckScoreAccuracy = (): JSX.Element => {
   );
 };
 
-export default React.memo(CheckScoreAccuracy);
+export default CheckScoreAccuracy;

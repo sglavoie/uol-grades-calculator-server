@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useAppDispatch } from '../../hooks';
-import { resetGrades } from '../../features/grades/gradesSlice';
-import { getTemplate } from '../helpers';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { resetGrades, selectGrades } from '../../features/grades/gradesSlice';
+import { downloadGrades, downloadTemplate } from '../helpers';
 
 const HeaderFull = (): JSX.Element => {
   const dispatch = useAppDispatch();
+  const grades = useAppSelector(selectGrades);
 
   const resetAllGrades = async () => {
     localStorage.removeItem('grades');
@@ -18,8 +19,12 @@ const HeaderFull = (): JSX.Element => {
       <Link to="/summarize-done">Summarize done</Link> -{' '}
       <Link to="/summarize-progress">Summarize progress</Link> -{' '}
       <Link to="/summarize-all">Summarize all</Link> -{' '}
-      <a href="#" onClick={() => getTemplate()}>
-        Get template
+      <a href="#" onClick={() => downloadTemplate()}>
+        Download empty template
+      </a>{' '}
+      -{' '}
+      <a href="#" onClick={() => downloadGrades(grades)}>
+        Download grades
       </a>{' '}
       -{' '}
       <a href="#" onClick={() => resetAllGrades()}>

@@ -1,8 +1,9 @@
 import axios from 'axios';
 import FileSaver from 'file-saver';
 import CONFIG from '../config';
+import { gradesResponse } from '../types';
 
-export const getTemplate = async () => {
+export const downloadTemplate = async () => {
   try {
     const response = await axios.get(`${CONFIG.SERVER_URL}/get-template`);
     let data = await response.data;
@@ -16,4 +17,13 @@ export const getTemplate = async () => {
   } catch (err) {
     console.log('Error fetching template...', err.message);
   }
+};
+
+export const downloadGrades = async (grades: gradesResponse) => {
+  // Prettify JSON output with indentation of 2 spaces
+  const data = JSON.stringify(grades, null, 2);
+
+  // Save with JSON mime type and correct config file name
+  const blob = new Blob([data], { type: 'application/json' });
+  FileSaver.saveAs(blob, CONFIG.GRADES_CONFIG_FILE);
 };

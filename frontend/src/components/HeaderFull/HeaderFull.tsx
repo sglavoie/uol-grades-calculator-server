@@ -1,24 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import {
-  resetGrades,
-  selectGradesLoaded,
-} from '../../features/grades/gradesSlice';
+import { useAppDispatch } from '../../hooks';
+import { resetGrades } from '../../features/grades/gradesSlice';
 import axios from 'axios';
 import FileSaver from 'file-saver';
 import CONFIG from '../../config';
 
-const AppHome = (): JSX.Element => (
-  <div style={{ marginBottom: '5em' }}>
-    <div style={{ marginBottom: '2em', paddingTop: '1em' }}>
-      <Link to="/">Home</Link>
-    </div>
-  </div>
-);
-
-const AppActions = (): JSX.Element => {
+const HeaderFull = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
   const getTemplate = async () => {
@@ -59,24 +48,10 @@ const AppActions = (): JSX.Element => {
   );
 };
 
-const AppGradesLoaded = (): JSX.Element => (
-  <>
-    <AppHome />
-    <AppActions />
-  </>
-);
-
-const Header = (): JSX.Element => {
-  const gradesLoaded = useAppSelector(selectGradesLoaded);
-
-  if (gradesLoaded) return <AppGradesLoaded />;
-  return <AppHome />;
-};
-
 const mapStateToProps = (state) => {
   return {
     ...state,
   };
 };
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps)(HeaderFull);

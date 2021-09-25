@@ -3,7 +3,7 @@ import FileSaver from 'file-saver';
 import CONFIG from '../config';
 import { gradesResponse } from '../types';
 
-export const downloadTemplate = async () => {
+export const downloadTemplate = async (): Promise<void> => {
   try {
     const response = await axios.get(`${CONFIG.SERVER_URL}/get-template`);
     let data = await response.data;
@@ -19,7 +19,7 @@ export const downloadTemplate = async () => {
   }
 };
 
-export const downloadGrades = async (grades: gradesResponse) => {
+export const downloadGrades = async (grades: gradesResponse): Promise<void> => {
   // Prettify JSON output with indentation of 2 spaces
   const data = JSON.stringify(grades, null, 2);
 

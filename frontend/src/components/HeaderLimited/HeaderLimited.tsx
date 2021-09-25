@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 const HeaderLimited = (): JSX.Element => {
   return (
@@ -12,10 +11,4 @@ const HeaderLimited = (): JSX.Element => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    ...state,
-  };
-};
-
-export default connect(mapStateToProps)(HeaderLimited);
+export default HeaderLimited;

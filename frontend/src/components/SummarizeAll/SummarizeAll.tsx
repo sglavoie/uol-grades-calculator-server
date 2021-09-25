@@ -65,9 +65,8 @@ const renderSummary = (state: summarizeAllResponse): JSX.Element => {
 };
 
 const SummarizeAll = (): JSX.Element => {
-  const { state, error, errorMsg, loading } = useFetch<summarizeAllResponse>(
-    '/summarize/all'
-  );
+  const { state, error, errorMsg, loading } =
+    useFetch<summarizeAllResponse>('/summarize/all');
 
   if (error) return <div>Error: {errorMsg}</div>;
   if (loading) return <div></div>;
@@ -75,4 +74,4 @@ const SummarizeAll = (): JSX.Element => {
   return renderSummary(state);
 };
 
-export default React.memo(SummarizeAll);
+export default SummarizeAll;

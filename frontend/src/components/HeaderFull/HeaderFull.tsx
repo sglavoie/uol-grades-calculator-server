@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import { useAppDispatch } from '../../hooks';
 import { resetGrades } from '../../features/grades/gradesSlice';
 import { getTemplate } from '../helpers';
@@ -30,10 +29,4 @@ const HeaderFull = (): JSX.Element => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    ...state,
-  };
-};
-
-export default connect(mapStateToProps)(HeaderFull);
+export default HeaderFull;

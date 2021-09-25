@@ -19,7 +19,7 @@ const HeaderFull = (): JSX.Element => {
       <Link to="/summarize-done">Summarize done</Link> -{' '}
       <Link to="/summarize-progress">Summarize progress</Link> -{' '}
       <Link to="/summarize-all">Summarize all</Link> -{' '}
-      <a href="#" onClick={() => downloadTemplate()}>
+      <a href="#" onClick={downloadTemplate}>
         Download empty template
       </a>{' '}
       -{' '}
@@ -27,7 +27,7 @@ const HeaderFull = (): JSX.Element => {
         Download grades
       </a>{' '}
       -{' '}
-      <a href="#" onClick={() => resetAllGrades()}>
+      <a href="#" onClick={resetAllGrades}>
         Reset all grades
       </a>
     </div>

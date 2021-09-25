@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import { useAppDispatch } from '../../hooks';
-import { setGrades, setGradesLoaded } from '../../features/grades/gradesSlice';
+import {useAppDispatch} from '../../hooks';
+import {setGrades, setGradesLoaded} from '../../features/grades/gradesSlice';
 import CONFIG from '../../config';
 
 const Uploader = (): JSX.Element => {
@@ -21,12 +21,12 @@ const Uploader = (): JSX.Element => {
 
   return (
     <div>
-      <span style={{ color: 'red' }}>No grades found.</span>
+      <span style={{color: 'red'}}>No grades found.</span>
       <div>
         <button>Upload existing configuration file...</button>
       </div>
       <div>
-        <button onClick={() => loadDefaultGradesTemplate()}>
+        <button onClick={loadDefaultGradesTemplate}>
           Start from scratch...
         </button>
       </div>

@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { useAppSelector } from '../../hooks';
-import { selectGradesLoaded } from '../../features/grades/gradesSlice';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import {
+  resetGrades,
+  selectGradesLoaded,
+} from '../../features/grades/gradesSlice';
 import axios from 'axios';
-import CONFIG from '../../config';
 import FileSaver from 'file-saver';
+import CONFIG from '../../config';
 
 const AppHome = (): JSX.Element => (
   <div style={{ marginBottom: '5em' }}>
@@ -16,6 +19,8 @@ const AppHome = (): JSX.Element => (
 );
 
 const AppActions = (): JSX.Element => {
+  const dispatch = useAppDispatch();
+
   const getTemplate = async () => {
     try {
       const response = await axios.get(`${CONFIG.SERVER_URL}/get-template`);
@@ -32,6 +37,11 @@ const AppActions = (): JSX.Element => {
     }
   };
 
+  const resetAllGrades = async () => {
+    localStorage.removeItem('grades');
+    dispatch(resetGrades());
+  };
+
   return (
     <div>
       <Link to="/check-score-accuracy">Check score accuracy</Link> -{' '}
@@ -40,6 +50,10 @@ const AppActions = (): JSX.Element => {
       <Link to="/summarize-all">Summarize all</Link> -{' '}
       <a href="#" onClick={() => getTemplate()}>
         Get template
+      </a>{' '}
+      -{' '}
+      <a href="#" onClick={() => resetAllGrades()}>
+        Reset all grades
       </a>
     </div>
   );
@@ -53,9 +67,9 @@ const AppGradesLoaded = (): JSX.Element => (
 );
 
 const Header = (): JSX.Element => {
-  const loaded = useAppSelector(selectGradesLoaded);
+  const gradesLoaded = useAppSelector(selectGradesLoaded);
 
-  if (loaded) return <AppGradesLoaded />;
+  if (gradesLoaded) return <AppGradesLoaded />;
   return <AppHome />;
 };
 

@@ -1,16 +1,11 @@
 import React from 'react';
 import axios from 'axios';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import {
-  selectGradesLoaded,
-  setGrades,
-  setGradesLoaded,
-} from '../../features/grades/gradesSlice';
+import { useAppDispatch } from '../../hooks';
+import { setGrades, setGradesLoaded } from '../../features/grades/gradesSlice';
 import CONFIG from '../../config';
 
 const Uploader = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const loaded = useAppSelector(selectGradesLoaded);
 
   const loadDefaultGradesTemplate = async () => {
     try {
@@ -23,8 +18,6 @@ const Uploader = (): JSX.Element => {
       console.log('Error fetching template...', err.message);
     }
   };
-
-  if (loaded) return <></>;
 
   return (
     <div>

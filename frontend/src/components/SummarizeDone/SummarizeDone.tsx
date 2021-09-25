@@ -38,8 +38,9 @@ const renderSummary = (state: summarizeDoneResponse): JSX.Element => {
 };
 
 const SummarizeDone = (): JSX.Element => {
-  const { state, error, errorMsg, loading } =
-    useFetch<summarizeDoneResponse>('/summarize/done');
+  const { state, error, errorMsg, loading } = useFetch<summarizeDoneResponse>(
+    '/summarize/done'
+  );
 
   if (error) return <div>Error: {errorMsg}</div>;
   if (loading) return <div></div>;

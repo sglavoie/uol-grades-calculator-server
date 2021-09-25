@@ -3,11 +3,12 @@ import useFetch from '../../hooks/useFetch';
 import { checkScoreAccuracyResponse } from '../../types';
 
 const CheckScoreAccuracy = (): JSX.Element => {
-  const { state, error, errorMsg, loading } =
-    useFetch<checkScoreAccuracyResponse>('/check/score-accuracy');
+  const { state, error, errorMsg, loading } = useFetch<
+    checkScoreAccuracyResponse
+  >('/check/score-accuracy');
 
   if (error) return <div>Error: {errorMsg}</div>;
-  if (loading) return <div></div>;
+  if (loading) return <></>;
 
   if (state.ok) {
     return <div>All module scores are accurate!</div>;

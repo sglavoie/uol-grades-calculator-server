@@ -37,8 +37,9 @@ const renderProgressSummary = (
 };
 
 const SummarizeProgress = (): JSX.Element => {
-  const { state, error, errorMsg, loading } =
-    useFetch<summarizeProgressResponse>('/summarize/progress');
+  const { state, error, errorMsg, loading } = useFetch<
+    summarizeProgressResponse
+  >('/summarize/progress');
 
   if (error) return <div>Error: {errorMsg}</div>;
   if (loading) return <div></div>;

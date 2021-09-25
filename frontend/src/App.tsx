@@ -14,8 +14,12 @@ import HomePage from './components/HomePage';
 
 // Styles
 import './App.css';
+import { useAppSelector } from './hooks';
+import { selectGradesLoaded } from './features/grades/gradesSlice';
 
 const App = (): JSX.Element => {
+  const gradesLoaded = useAppSelector(selectGradesLoaded);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -23,17 +27,18 @@ const App = (): JSX.Element => {
           <Header />
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route
-              path="/check-score-accuracy"
-              component={CheckScoreAccuracy}
-            />
-            <Route exact path="/summarize-done" component={SummarizeDone} />
-            <Route
-              exact
-              path="/summarize-progress"
-              component={SummarizeProgress}
-            />
-            <Route exact path="/summarize-all" component={SummarizeAll} />
+            <Route exact path="/check-score-accuracy">
+              {gradesLoaded ? <CheckScoreAccuracy /> : <HomePage />}
+            </Route>
+            <Route exact path="/summarize-done">
+              {gradesLoaded ? <SummarizeDone /> : <HomePage />}
+            </Route>
+            <Route exact path="/summarize-progress">
+              {gradesLoaded ? <SummarizeProgress /> : <HomePage />}
+            </Route>
+            <Route exact path="/summarize-all">
+              {gradesLoaded ? <SummarizeAll /> : <HomePage />}
+            </Route>
             <Route component={NotFound} />
           </Switch>
         </Router>

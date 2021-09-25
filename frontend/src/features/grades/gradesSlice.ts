@@ -16,6 +16,10 @@ export const gradesSlice = createSlice({
   name: 'grades',
   initialState,
   reducers: {
+    resetGrades: (state) => {
+      state.grades = {};
+      state.loaded = false;
+    },
     setGrades: (state, action: PayloadAction<gradesResponse>) => {
       state.grades = action.payload;
     },
@@ -25,7 +29,7 @@ export const gradesSlice = createSlice({
   },
 });
 
-export const { setGrades, setGradesLoaded } = gradesSlice.actions;
+export const { resetGrades, setGrades, setGradesLoaded } = gradesSlice.actions;
 
 export const selectGradesLoaded = (state: RootState): boolean =>
   state.grades.loaded;

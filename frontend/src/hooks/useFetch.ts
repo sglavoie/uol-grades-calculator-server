@@ -4,7 +4,7 @@ import axios from 'axios';
 import CONFIG from '../config';
 
 const useFetch = <T>(
-  endpoint: string,
+  endpoint: string
 ): {
   state: T;
   error: boolean;

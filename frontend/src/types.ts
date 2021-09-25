@@ -88,3 +88,15 @@ export type summarizeAllResponse = Readonly<{
     unweighted_average: number;
   };
 }>;
+
+export type gradesResponse = {
+  [module: string]: {
+    completion_date: string;
+    final_score: number;
+    final_weight: number;
+    midterm_score: number;
+    midterm_weight: number;
+    module_score: number;
+    level: number;
+  };
+};

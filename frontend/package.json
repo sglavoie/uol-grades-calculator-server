@@ -15,6 +15,7 @@
     "dotenv": "^10.0.0",
     "eslint-import-resolver-typescript": "^2.4.0",
     "file-saver": "^2.0.5",
+    "lodash": "^4.17.21",
     "prettier": "^2.3.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -51,6 +52,7 @@
   },
   "devDependencies": {
     "@types/file-saver": "^2.0.3",
+    "@types/lodash": "^4.14.174",
     "@types/react-router-dom": "^5.1.8",
     "@typescript-eslint/parser": "^4.29.3",
     "eslint": "^7.32.0",

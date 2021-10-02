@@ -19,6 +19,8 @@ uvicorn main:app --reload
 
 ### Testing changes made to `ugc` before publishing to PyPI
 
+#### Via GitHub
+
 In `backend/requirements.txt`, comment out the line `uol-grades-calculator` and add a new line as follows:
 
 ```text
@@ -26,6 +28,18 @@ git+https://github.com/sglavoie/uol-grades-calculator@BRANCH_NAME#egg=uol-grades
 ```
 
 The GitHub repository for `ugc` will be cloned when installing the dependencies and the source code will be coming from the branch `BRANCH_NAME`. The bit at the end, `#egg=uol-grades-calculator`, will tell `pip` to install the package with the same name as before: _uol-grades-calculator_.
+
+#### Via local installation
+
+Assuming requirements are already installed, it is possible to uninstall `uol-grades-calculator` and reinstall it from a local repository to avoid pushing changes to the remote altogether. To do so:
+
+```bash
+pip uninstall uol-grades-calculator
+pip install /home/user/path/to/uol_grades_calculator
+
+# Then, just re-launch the server
+uvicorn main:app --reload
+```
 
 ## Setting up the front-end
 

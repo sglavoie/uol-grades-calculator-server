@@ -1,16 +1,18 @@
 import json
 import os
 from pathlib import Path
+from typing import Optional, Dict, Any
 
 # Third-party library imports
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 
 # ugc
 import ugc
 from ugc.grades import Grades
-from ugc.config import Config
+from ugc.config import Config, ConfigValidationError
 from ugc import __version__ as version_ugc
 from ugc import commands
 from ugc.utils import commands_helpers
@@ -35,6 +37,20 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+class ModuleData(BaseModel):
+    completion_date: Optional[str]
+    final_score: Optional[float]
+    final_weight: Optional[int]
+    midterm_score: Optional[float]
+    midterm_weight: Optional[int]
+    module_score: Optional[float]
+    level: Optional[int]
+
+
+class GradesResponse(BaseModel):
+    module_name: str
 
 
 @app.get("/")
@@ -97,3 +113,13 @@ async def plot_modules():
 @app.get("/get-template")
 async def get_template():
     return commands_helpers.get_template()
+
+
+# TODO: Parameter `json_str` should be defined as a Pydantic model
+@app.post("/validate-config")
+async def validate_config(json_str: Dict[Any, Any] = None):
+    try:
+        grades = Grades(json_str=json.dumps(json_str))
+    except ConfigValidationError:
+        return {"error": True, "config": {}}
+    return {"error": False, "config": grades.config}

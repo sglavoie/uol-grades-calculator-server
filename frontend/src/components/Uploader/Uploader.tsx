@@ -3,18 +3,17 @@ import axios from 'axios';
 import { useAppDispatch } from '../../hooks';
 import { setGrades, setGradesLoaded } from '../../features/grades/gradesSlice';
 import CONFIG from '../../config';
+import { gradesResponse } from '../../types';
 
 const Uploader = (): JSX.Element => {
   const dispatch = useAppDispatch();
-
   const [selectedFile, setSelectedFile] = useState({});
   const [isFilePicked, setIsFilePicked] = useState(false);
   const [fileContent, setFileContent] = useState({});
 
   function setFileContentAsJSON(event: ProgressEvent<FileReader>) {
     const json = JSON.parse(String(event?.target?.['result']) || '');
-    const jsonMinified = JSON.stringify(json);
-    setFileContent(jsonMinified);
+    setFileContent(json);
   }
 
   const changeHandler = (event) => {
@@ -26,29 +25,41 @@ const Uploader = (): JSX.Element => {
     setIsFilePicked(true);
   };
 
-  // TODO: this function should do the following:
-  // - Read the uploaded file as a string
-  // - Send the string as an URL parameter to the backend to instantiate a new Grades object and get the config in return
-  // - Should handle failure when the config isn't valid and set states accordingly (alert and re-display component)
-  // - Should handle successful response by calling the setGrades action so the uploader component isn't shown anymore
-  const handleFileUpload = () => {
+  const handleFileUpload = async () => {
     if (!isFilePicked) return alert('Please select a file to upload.');
-    // uploadedFileIsValid()
-    console.log(selectedFile, typeof selectedFile);
-    console.log('uploadGradesFile:', isFilePicked, selectedFile);
-    console.log('fileContent:', fileContent);
+
+    try {
+      const response = await axios.post(
+        `${CONFIG.SERVER_URL}/validate-config`,
+        fileContent
+      );
+      if (response.data.error) {
+        alert(
+          "The selected file couldn't be loaded successfully. Please try uploading a different file."
+        );
+      } else {
+        const grades: gradesResponse = response.data.config.data;
+        setStateGrades(grades);
+      }
+    } catch (error) {
+      console.log('Error when uploading grades...', error.message);
+    }
   };
 
   const loadDefaultGradesTemplate = async () => {
     try {
       const response = await axios.get(`${CONFIG.SERVER_URL}/get-template`);
-      const grades = await response.data;
-      dispatch(setGrades(grades));
-      dispatch(setGradesLoaded(true));
-      localStorage.setItem('grades', JSON.stringify(grades));
-    } catch (err) {
-      console.log('Error fetching template...', err.message);
+      const grades: gradesResponse = await response.data;
+      setStateGrades(grades);
+    } catch (error) {
+      console.log('Error fetching template...', error.message);
     }
+  };
+
+  const setStateGrades = (grades) => {
+    dispatch(setGrades(grades));
+    dispatch(setGradesLoaded(true));
+    localStorage.setItem('grades', JSON.stringify(grades));
   };
 
   return (

@@ -1,11 +1,13 @@
 import React from 'react';
-import useFetch from '../../hooks/useFetch';
+import { selectGrades } from '../../features/grades/gradesSlice';
+import { useAppSelector } from '../../hooks';
+import { useFetchPost } from '../../hooks/useFetch';
 import { checkScoreAccuracyResponse } from '../../types';
 
 const CheckScoreAccuracy = (): JSX.Element => {
-  const { state, error, errorMsg, loading } = useFetch<
-    checkScoreAccuracyResponse
-  >('/check/score-accuracy');
+  const grades = useAppSelector(selectGrades);
+  const { state, error, errorMsg, loading } =
+    useFetchPost<checkScoreAccuracyResponse>('/check/score-accuracy', grades);
 
   if (error) return <div>Error: {errorMsg}</div>;
   if (loading) return <></>;

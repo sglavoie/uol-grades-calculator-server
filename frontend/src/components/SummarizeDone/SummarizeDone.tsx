@@ -1,5 +1,7 @@
 import React from 'react';
-import useFetch from '../../hooks/useFetch';
+import { selectGrades } from '../../features/grades/gradesSlice';
+import { useAppSelector } from '../../hooks';
+import { useFetchGet, useFetchPost } from '../../hooks/useFetch';
 import { summarizeDoneResponse } from '../../types';
 
 const renderSummary = (state: summarizeDoneResponse): JSX.Element => {
@@ -38,9 +40,9 @@ const renderSummary = (state: summarizeDoneResponse): JSX.Element => {
 };
 
 const SummarizeDone = (): JSX.Element => {
-  const { state, error, errorMsg, loading } = useFetch<summarizeDoneResponse>(
-    '/summarize/done'
-  );
+  const grades = useAppSelector(selectGrades);
+  const { state, error, errorMsg, loading } =
+    useFetchPost<summarizeDoneResponse>('/summarize/done', grades);
 
   if (error) return <div>Error: {errorMsg}</div>;
   if (loading) return <div></div>;

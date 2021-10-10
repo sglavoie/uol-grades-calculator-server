@@ -14,7 +14,7 @@ Run the server:
 
 ```bash
 cd backend
-uvicorn main:app --reload
+python src/main.py
 ```
 
 ### Testing changes made to `ugc` before publishing to PyPI
@@ -38,7 +38,7 @@ pip uninstall uol-grades-calculator
 pip install /home/user/path/to/uol_grades_calculator
 
 # Then, just re-launch the server
-uvicorn main:app --reload
+python src/main.py
 ```
 
 ## Setting up the front-end

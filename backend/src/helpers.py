@@ -8,8 +8,9 @@ from ugc.config import ConfigValidationError
 def get_config_dict(json_str):
     try:
         return Grades(json_str=json.dumps(json_str))
-    except ConfigValidationError:
-        return {}
+    except ConfigValidationError as err:
+        print(f"Unexpected ConfigValidationError {err=}")
+        raise
 
 
 def get_config_json(json_str):

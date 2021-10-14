@@ -11,7 +11,7 @@ import uvicorn
 
 # ugc
 from ugc.grades import Grades
-from ugc.config import Config
+from ugc.config import Config, ConfigValidationError
 from ugc import __version__ as version_ugc
 from ugc import commands
 from ugc.utils import commands_helpers
@@ -102,18 +102,20 @@ async def summarize_all(json_str: Dict[Any, Any] = None):
 
 
 # TODO: Options should be accepted by the API.
-# TODO: "path" just works with a local server. The expected reply would be a
 # TODO: Config should be loaded elsewhere and this should be a POST request.
-# PNG image.
-@app.get("/plot/modules")
-async def plot_modules():
-    # Need to pass in a default path, otherwise it would save at the root of
-    # the server
-    # Passing the API flag so that prompt confirmation can be avoided
-    grades = Grades()
-    return commands.plot_modules(
-        grades, api=True, options={"path": os.path.expanduser("~")}
-    )
+@app.post("/plot/modules")
+async def plot_modules(json_str: Dict[Any, Any] = None) -> dict:
+    try:
+        grades = get_config_dict(json_str)
+        # Passing the API flag so that prompt confirmation can be avoided
+        return commands.plot_modules(
+            grades, api=True, options={"path": os.path.expanduser("~")}
+        )
+    except ConfigValidationError:
+        return {
+            "ok": False,
+            "error": "ConfigValidationError: Config file must be invalid.",
+        }
 
 
 @app.get("/get-template")

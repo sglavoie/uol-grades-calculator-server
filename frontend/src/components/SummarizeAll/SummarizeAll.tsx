@@ -10,18 +10,14 @@ const renderSummary = (state: summarizeAllResponse): JSX.Element => {
     <>
       {!_.isEmpty(state.done) && (
         <>
-          <div style={{ fontWeight: 'bold', marginBottom: '1em' }}>Done</div>
-          <div style={{ padding: '1em' }}>
+          <div className="font-semibold mb-4">Done</div>
+          <div className="p-4">
             {state.done?.modules?.map((module) => (
               <div
                 key={module.module_name}
-                style={{
-                  border: '1px solid white',
-                  padding: '1em',
-                  margin: '1em',
-                }}
+                className="border border-white p-4 m-4"
               >
-                <div style={{ fontWeight: 'bold', color: '#a67dff' }}>
+                <div className="font-semibold text-indigo-400">
                   {module.module_name}
                 </div>
                 <div>completion_date: {module.completion_date}</div>
@@ -49,26 +45,14 @@ const renderSummary = (state: summarizeAllResponse): JSX.Element => {
       )}
       {!_.isEmpty(state.progress) && (
         <>
-          <div
-            style={{
-              fontWeight: 'bold',
-              marginBottom: '1em',
-              marginTop: '3em',
-            }}
-          >
-            Progress
-          </div>
+          <div className="font-semibold my-4">Progress</div>
           <div style={{ padding: '1em' }}>
             {state.progress?.modules?.map((module) => (
               <div
                 key={module.module_name}
-                style={{
-                  border: '1px solid white',
-                  padding: '1em',
-                  margin: '1em',
-                }}
+                className="border border-white p-4 m-4"
               >
-                <div style={{ fontWeight: 'bold', color: '#a67dff' }}>
+                <div className="font-semibold text-indigo-400">
                   {module.module_name}
                 </div>
                 <div>final_score: {module.final_score}</div>

@@ -19,8 +19,8 @@ const PlotModules = (): JSX.Element => {
   }
 
   return (
-    <div style={{ marginTop: '3em' }}>
-      <img src={state.src} />
+    <div className="mt-12 text-center">
+      <img src={state.src} className="max-w-screen-xl inline-block" />
     </div>
   );
 };

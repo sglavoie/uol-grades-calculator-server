@@ -3,10 +3,17 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    @apply bg-gray-800;
+  }
   a {
-    @apply text-indigo-300;
+    @apply text-indigo-200;
   }
   a:hover {
-    @apply text-indigo-200;
+    @apply text-indigo-100;
+  }
+
+  input[type='file'] {
+    color: #A5B4FC !important;
   }
 }

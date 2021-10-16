@@ -63,24 +63,34 @@ const Uploader = (): JSX.Element => {
   };
 
   return (
-    <div>
-      <span style={{ color: 'red' }}>No grades found.</span>
+    <div className="flex flex-col items-center">
+      <span className="text-red-400 my-8">No grades were found.</span>
       <div>
-        <div>
+        <h1 className="font-semibold text-lg mb-2">Option 1</h1>
+        <div className="flex flex-row flex-grow justify-center border border-white p-8 max-w-max">
           <input
             type="file"
             name="file"
             accept=".json"
             onChange={changeHandler}
+            className="border-l border-t border-b border-indigo-300 h-10 leading-10 placeholder-gray-500"
           />
-          <div>
-            <button onClick={handleFileUpload}>Upload grades...</button>
+          <div className="h-10">
+            <button
+              className="h-10 border border-indigo-300 bg-indigo-700 p-2"
+              onClick={handleFileUpload}
+            >
+              Upload grades...
+            </button>
           </div>
         </div>
-        <br />
       </div>
-      <div>
-        <button onClick={loadDefaultGradesTemplate}>
+      <div className="mt-8">
+        <h1 className="font-semibold text-lg mb-2">Option 2</h1>
+        <button
+          className="border border-indigo-300 bg-indigo-700 p-2"
+          onClick={loadDefaultGradesTemplate}
+        >
           Start from scratch...
         </button>
       </div>

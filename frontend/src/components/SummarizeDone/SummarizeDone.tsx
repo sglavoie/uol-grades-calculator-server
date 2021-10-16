@@ -6,13 +6,10 @@ import { summarizeDoneResponse } from '../../types';
 
 const renderSummary = (state: summarizeDoneResponse): JSX.Element => {
   return (
-    <div style={{ padding: '1em' }}>
+    <div>
       {state.modules.map((module) => (
-        <div
-          key={module.module_name}
-          style={{ border: '1px solid white', padding: '1em', margin: '1em' }}
-        >
-          <div style={{ fontWeight: 'bold', color: '#a67dff' }}>
+        <div key={module.module_name} className="border border-white p-4 m-4">
+          <div className="font-semibold text-indigo-400">
             {module.module_name}
           </div>
           <div>completion_date: {module.completion_date}</div>

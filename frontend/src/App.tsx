@@ -47,30 +47,34 @@ const App = (): JSX.Element => {
 
   return (
     <div className="text-center text-base">
-      <header className="p-2 items-center justify-center text-white flex-auto flex-col min-h-screen bg-gray-800">
+      <header className="items-center justify-center text-white flex-auto flex-col min-h-screen bg-gray-800">
         <Router>
-          <HeaderComponent gradesLoaded={gradesLoaded} />
-          <Switch>
-            <Route exact path="/">
-              {gradesLoaded ? <HomePage /> : <Uploader />}
-            </Route>
-            <Route exact path="/check-score-accuracy">
-              {gradesLoaded ? <CheckScoreAccuracy /> : <Redirect to="/" />}
-            </Route>
-            <Route exact path="/summarize-done">
-              {gradesLoaded ? <SummarizeDone /> : <Redirect to="/" />}
-            </Route>
-            <Route exact path="/summarize-progress">
-              {gradesLoaded ? <SummarizeProgress /> : <Redirect to="/" />}
-            </Route>
-            <Route exact path="/summarize-all">
-              {gradesLoaded ? <SummarizeAll /> : <Redirect to="/" />}
-            </Route>
-            <Route exact path="/plot-modules">
-              {gradesLoaded ? <PlotModules /> : <Redirect to="/" />}
-            </Route>
-            <Route component={NotFound} />
-          </Switch>
+          <div className="p-4 font-medium bg-black">
+            <HeaderComponent gradesLoaded={gradesLoaded} />
+          </div>
+          <div className="m-16">
+            <Switch>
+              <Route exact path="/">
+                {gradesLoaded ? <HomePage /> : <Uploader />}
+              </Route>
+              <Route exact path="/check-score-accuracy">
+                {gradesLoaded ? <CheckScoreAccuracy /> : <Redirect to="/" />}
+              </Route>
+              <Route exact path="/summarize-done">
+                {gradesLoaded ? <SummarizeDone /> : <Redirect to="/" />}
+              </Route>
+              <Route exact path="/summarize-progress">
+                {gradesLoaded ? <SummarizeProgress /> : <Redirect to="/" />}
+              </Route>
+              <Route exact path="/summarize-all">
+                {gradesLoaded ? <SummarizeAll /> : <Redirect to="/" />}
+              </Route>
+              <Route exact path="/plot-modules">
+                {gradesLoaded ? <PlotModules /> : <Redirect to="/" />}
+              </Route>
+              <Route component={NotFound} />
+            </Switch>
+          </div>
         </Router>
       </header>
     </div>

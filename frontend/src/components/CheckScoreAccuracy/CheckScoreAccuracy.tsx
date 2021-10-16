@@ -13,19 +13,21 @@ const CheckScoreAccuracy = (): JSX.Element => {
   if (loading) return <></>;
 
   if (state.ok) {
-    return <div>All module scores are accurate!</div>;
+    return (
+      <div className="text-green-200">All module scores are accurate!</div>
+    );
   }
   return (
-    <div style={{ border: '1px solid white', padding: '1em' }}>
+    <div className="p-4 border border-white">
       {Object.keys(state.accuracy).map((module) => {
         const actual = state.accuracy[module].actual;
         const expected = state.accuracy[module].expected;
         return (
           <React.Fragment key={module}>
-            <div style={{ padding: '1.5em' }}>
+            <div className="p-2">
               <div>{module}</div>
-              <p style={{ color: '#ff5353' }}>Actual: {actual}%</p>
-              <p style={{ color: '#53caff' }}>Expected: {expected}%</p>
+              <p className="text-red-400">Actual: {actual}%</p>
+              <p className="text-blue-400">Expected: {expected}%</p>
             </div>
           </React.Fragment>
         );

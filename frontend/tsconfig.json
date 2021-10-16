@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
     "target": "es5",
     "lib": [
       "dom",
@@ -24,20 +25,29 @@
     "outDir": "build"
   },
   "paths": {
+    "@root": [
+      "./"
+    ],
+    "@root/*": [
+      "./*"
+    ],
+    "@lib": [
+      "./lib"
+    ],
     "@lib/*": [
-      "lib/*"
+      "./lib/*"
     ],
     "@utils/*": [
-      "utils/*"
+      "./utils/*"
     ],
     "@config/*": [
-      "config/*"
+      "./config/*"
     ],
     "@assets/*": [
-      "assets/*"
+      "./assets/*"
     ],
     "@components/*": [
-      "components/*"
+      "./components/*"
     ],
   },
   "include": [
@@ -45,7 +55,7 @@
     "**/*.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "**/*.js"
+    "./src/*.js"
   ],
   "exclude": [
     "node_modules",

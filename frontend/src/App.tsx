@@ -19,18 +19,15 @@ import {
 
 // Components
 import CheckScoreAccuracy from './components/CheckScoreAccuracy';
+import HeaderFull from './components/HeaderFull';
+import HeaderLimited from './components/HeaderLimited';
+import HomePage from './components/HomePage';
 import NotFound from './components/NotFound';
+import PlotModules from './components/PlotModules';
 import SummarizeAll from './components/SummarizeAll';
 import SummarizeDone from './components/SummarizeDone';
 import SummarizeProgress from './components/SummarizeProgress';
-import HomePage from './components/HomePage';
-import HeaderFull from './components/HeaderFull';
-import HeaderLimited from './components/HeaderLimited';
-
-// Styles
-import './App.css';
 import Uploader from './components/Uploader';
-import PlotModules from './components/PlotModules';
 
 const HeaderComponent = ({ gradesLoaded }): JSX.Element => {
   if (gradesLoaded) return <HeaderFull />;
@@ -49,8 +46,8 @@ const App = (): JSX.Element => {
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="text-center text-base">
+      <header className="p-2 items-center justify-center text-white flex-auto flex-col min-h-screen bg-gray-800">
         <Router>
           <HeaderComponent gradesLoaded={gradesLoaded} />
           <Switch>

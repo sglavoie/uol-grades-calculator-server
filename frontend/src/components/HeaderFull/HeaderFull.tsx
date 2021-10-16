@@ -19,6 +19,7 @@ const HeaderFull = (): JSX.Element => {
       <Link to="/summarize-done">Summarize done</Link> -{' '}
       <Link to="/summarize-progress">Summarize progress</Link> -{' '}
       <Link to="/summarize-all">Summarize all</Link> -{' '}
+      <Link to="/plot-modules">Plot modules</Link> -{' '}
       <a href="#" onClick={downloadTemplate}>
         Download empty template
       </a>{' '}

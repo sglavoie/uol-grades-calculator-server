@@ -30,6 +30,7 @@ import HeaderLimited from './components/HeaderLimited';
 // Styles
 import './App.css';
 import Uploader from './components/Uploader';
+import PlotModules from './components/PlotModules';
 
 const HeaderComponent = ({ gradesLoaded }): JSX.Element => {
   if (gradesLoaded) return <HeaderFull />;
@@ -67,6 +68,9 @@ const App = (): JSX.Element => {
             </Route>
             <Route exact path="/summarize-all">
               {gradesLoaded ? <SummarizeAll /> : <Redirect to="/" />}
+            </Route>
+            <Route exact path="/plot-modules">
+              {gradesLoaded ? <PlotModules /> : <Redirect to="/" />}
             </Route>
             <Route component={NotFound} />
           </Switch>

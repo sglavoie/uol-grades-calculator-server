@@ -89,6 +89,12 @@ export type summarizeAllResponse = Readonly<{
   };
 }>;
 
+export type plotModulesResponse = Readonly<{
+  ok: boolean;
+  src?: string; // optional: will be absent if there's an error
+  error?: string; // optional: will be absent if no error
+}>;
+
 export type gradesResponse = {
   [module: string]: {
     completion_date: string;

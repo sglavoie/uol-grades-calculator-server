@@ -5,9 +5,11 @@ from ugc.grades import Grades
 from ugc.config import ConfigValidationError
 
 
-def get_config_dict(json_str):
+def get_config_dict(config_data: dict = None):
+    if config_data is None:
+        config_data = {}
     try:
-        return Grades(json_str=json.dumps(json_str))
+        return Grades(json_str=json.dumps(config_data))
     except ConfigValidationError as err:
         print(f"Unexpected ConfigValidationError {err=}")
         raise

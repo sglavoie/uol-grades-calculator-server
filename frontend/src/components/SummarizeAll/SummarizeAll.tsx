@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React from 'react';
-import { selectGrades } from '../../features/grades/gradesSlice';
+import { selectGradesData } from '../../features/grades/gradesSlice';
 import { useAppSelector } from '../../hooks';
 import { useFetchPost } from '../../hooks/useFetch';
 import { summarizeAllResponse } from '../../types';
@@ -72,7 +72,7 @@ const renderSummary = (state: summarizeAllResponse): JSX.Element => {
 };
 
 const SummarizeAll = (): JSX.Element => {
-  const grades = useAppSelector(selectGrades);
+  const grades = useAppSelector(selectGradesData);
   const { state, error, errorMsg, loading } =
     useFetchPost<summarizeAllResponse>('/summarize/all', grades);
 

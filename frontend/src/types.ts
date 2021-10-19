@@ -43,6 +43,10 @@ type summarizeProgressModule = basicSummary &
     midterm_weight?: number;
   }>;
 
+type gradesOptions = {
+  [optionName: string]: any;
+};
+
 export type checkScoreAccuracyResponse = Readonly<{
   ok: boolean;
   accuracy: {
@@ -95,7 +99,7 @@ export type plotModulesResponse = Readonly<{
   error?: string; // optional: will be absent if no error
 }>;
 
-export type gradesResponse = {
+export type grades = {
   [module: string]: {
     completion_date: string;
     final_score: number;
@@ -105,4 +109,9 @@ export type gradesResponse = {
     module_score: number;
     level: number;
   };
+};
+
+export type gradesPostRequestBody = {
+  data?: grades;
+  options?: gradesOptions;
 };

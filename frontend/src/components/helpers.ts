@@ -1,7 +1,7 @@
 import axios from 'axios';
 import FileSaver from 'file-saver';
 import CONFIG from '../config';
-import { gradesResponse } from '../types';
+import { gradesPostRequestBody } from '../types';
 
 export const downloadTemplate = async (): Promise<void> => {
   try {
@@ -19,7 +19,7 @@ export const downloadTemplate = async (): Promise<void> => {
   }
 };
 
-export const downloadGrades = async (grades: gradesResponse): Promise<void> => {
+export const downloadGrades = async (grades: gradesPostRequestBody): Promise<void> => {
   // Prettify JSON output with indentation of 2 spaces
   const data = JSON.stringify(grades, null, 2);
 

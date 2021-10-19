@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useAppDispatch } from '../../hooks';
-import { setGrades, setGradesLoaded } from '../../features/grades/gradesSlice';
+import {
+  setGradesData,
+  setGradesLoaded,
+} from '../../features/grades/gradesSlice';
 import CONFIG from '../../config';
-import { gradesResponse } from '../../types';
+import { grades } from '../../types';
 
 const Uploader = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -38,7 +41,7 @@ const Uploader = (): JSX.Element => {
           "The selected file couldn't be loaded successfully. Please try uploading a different file."
         );
       } else {
-        const grades: gradesResponse = response.data.config.data;
+        const grades: grades = response.data.config.data;
         setStateGrades(grades);
       }
     } catch (error) {
@@ -49,7 +52,8 @@ const Uploader = (): JSX.Element => {
   const loadDefaultGradesTemplate = async () => {
     try {
       const response = await axios.get(`${CONFIG.SERVER_URL}/get-template`);
-      const grades: gradesResponse = await response.data;
+      const grades: grades = await response.data;
+
       setStateGrades(grades);
     } catch (error) {
       console.log('Error fetching template...', error.message);
@@ -57,7 +61,7 @@ const Uploader = (): JSX.Element => {
   };
 
   const setStateGrades = (grades) => {
-    dispatch(setGrades(grades));
+    dispatch(setGradesData(grades));
     dispatch(setGradesLoaded(true));
     localStorage.setItem('grades', JSON.stringify(grades));
   };

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import CONFIG from '../config';
-import { gradesResponse } from '../types';
+import { gradesPostRequestBody } from '../types';
 
 export const useFetchGet = <T>(
   endpoint: string
@@ -45,7 +45,7 @@ export const useFetchGet = <T>(
 
 export const useFetchPost = <T>(
   endpoint: string,
-  content: gradesResponse
+  content: gradesPostRequestBody
 ): {
   state: T;
   error: boolean;

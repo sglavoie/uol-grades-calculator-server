@@ -13,7 +13,7 @@ import {
 import { useAppDispatch, useAppSelector } from './hooks';
 import {
   selectGradesLoaded,
-  setGrades,
+  setGradesData,
   setGradesLoaded,
 } from './features/grades/gradesSlice';
 
@@ -41,7 +41,7 @@ const App = (): JSX.Element => {
   const gradesAreEmpty = _.isEmpty(grades);
 
   if (!gradesAreEmpty) {
-    dispatch(setGrades(JSON.parse(grades)));
+    dispatch(setGradesData(JSON.parse(grades)));
     dispatch(setGradesLoaded(true));
   }
 

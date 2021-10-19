@@ -10,7 +10,7 @@ import { grades } from '../../types';
 
 const Uploader = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const [selectedFile, setSelectedFile] = useState({});
+  const [_selectedFile, setSelectedFile] = useState({});
   const [isFilePicked, setIsFilePicked] = useState(false);
   const [fileContent, setFileContent] = useState({});
 

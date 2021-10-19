@@ -101,15 +101,16 @@ async def summarize_all(json_str: Dict[Any, Any] = None):
     return commands.summarize_all(grades)
 
 
-# TODO: Options should be accepted by the API.
-# TODO: Config should be loaded elsewhere and this should be a POST request.
+# TODO: Use Pydantic model
 @app.post("/plot/modules")
-async def plot_modules(json_str: Dict[Any, Any] = None) -> dict:
+async def plot_modules(plot_config: Dict[Any, Any] = None) -> dict:
+    if plot_config is None:
+        plot_config = {}
     try:
-        grades = get_config_dict(json_str)
+        grades = get_config_dict(plot_config.get("data"))
         # Passing the API flag so that prompt confirmation can be avoided
         return commands.plot_modules(
-            grades, api=True, options={"path": os.path.expanduser("~")}
+            grades, api=True, options=plot_config.get("options", {})
         )
     except ConfigValidationError:
         return {

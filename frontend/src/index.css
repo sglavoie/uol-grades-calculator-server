@@ -13,7 +13,44 @@
     @apply text-indigo-100;
   }
 
+  h1 {
+    font-size: 2rem;
+    margin: 2em auto;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin: 2.5em auto 1.5em auto;
+  }
+
   input[type='file'] {
-    color: #A5B4FC !important;
+    color: #a5b4fc !important;
+  }
+
+  input[type='text'],
+  input[type='number'] {
+    color: #000000;
+    padding: 0.2em 0.5em;
+    @apply font-bold py-2 px-4 rounded;
+  }
+
+  input[type='checkbox'] {
+    float: left;
+    margin-right: 1em;
+    vertical-align: middle;
+  }
+
+  label {
+    margin-right: 2em;
+  }
+
+  .btn {
+    @apply font-bold py-2 px-4 rounded;
+  }
+  .btn-blue {
+    @apply bg-blue-500 text-white;
+  }
+  .btn-blue:hover {
+    @apply bg-blue-700;
   }
 }

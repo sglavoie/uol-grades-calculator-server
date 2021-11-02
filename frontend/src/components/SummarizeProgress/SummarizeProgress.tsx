@@ -1,5 +1,5 @@
 import React from 'react';
-import { selectGradesData } from '../../features/grades/gradesSlice';
+import { selectGrades } from '../../features/grades/gradesSlice';
 import { useAppSelector } from '../../hooks';
 import { useFetchGet, useFetchPost } from '../../hooks/useFetch';
 import { summarizeProgressResponse } from '../../types';
@@ -36,7 +36,7 @@ const renderProgressSummary = (
 };
 
 const SummarizeProgress = (): JSX.Element => {
-  const grades = useAppSelector(selectGradesData);
+  const grades = useAppSelector(selectGrades);
   const { state, error, errorMsg, loading } =
     useFetchPost<summarizeProgressResponse>('/summarize/progress', grades);
 

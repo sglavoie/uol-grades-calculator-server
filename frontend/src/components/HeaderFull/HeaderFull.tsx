@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { resetGrades, selectGradesData } from '../../features/grades/gradesSlice';
+import { resetGrades, selectGrades } from '../../features/grades/gradesSlice';
 import { downloadGrades, downloadTemplate } from '../helpers';
 
 const HeaderFull = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const grades = useAppSelector(selectGradesData);
+  const grades = useAppSelector(selectGrades);
 
   const resetAllGrades = async () => {
     localStorage.removeItem('grades');

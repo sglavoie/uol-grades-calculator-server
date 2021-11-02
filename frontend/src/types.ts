@@ -43,8 +43,18 @@ type summarizeProgressModule = basicSummary &
     midterm_weight?: number;
   }>;
 
-type gradesOptions = {
-  [optionName: string]: any;
+export type PlotModulesOptionsType = {
+  dpi: number;
+  long_module_names: boolean;
+  no_avg_overall: boolean;
+  no_avg_unweighted: boolean;
+  no_avg_weighted: boolean;
+  no_avgs: boolean;
+  no_grades: boolean;
+  no_module_names: boolean;
+  no_trend: boolean;
+  title_keep_date: boolean;
+  title_no_date: boolean;
 };
 
 export type checkScoreAccuracyResponse = Readonly<{
@@ -112,6 +122,6 @@ export type grades = {
 };
 
 export type gradesPostRequestBody = {
-  data?: grades;
-  options?: gradesOptions;
+  data: grades;
+  options: PlotModulesOptionsType;
 };

@@ -9,17 +9,12 @@ import PlotModulesOptions from './PlotModulesOptions';
 const PlotModules = (): JSX.Element => {
   const [shouldDisplayGraph, setShouldDisplayGraph] = React.useState(false);
   const grades = useAppSelector(selectGrades);
-  const options = {
-    title_keep_date: false,
-    title_no_date: true,
-    title: 'asdas',
-  };
 
   const fetchAndDisplayGraph = () => {
     const { state, error, errorMsg, loading } =
       useFetchPost<plotModulesResponse>('/plot/modules', {
         data: grades.data,
-        options: options,
+        options: grades.options,
       });
     if (error) return <div>Error: {errorMsg}</div>;
     if (loading) return <div>Generating plot...</div>;
@@ -28,14 +23,14 @@ const PlotModules = (): JSX.Element => {
       return <div>{state.error}</div>;
     }
 
-    return <PlotModulesGraph path={state.src || ""} />;
+    return <PlotModulesGraph path={state.src || ''} />;
   };
 
   if (shouldDisplayGraph) {
     return fetchAndDisplayGraph();
   }
 
-  return <PlotModulesOptions />;
+  return <PlotModulesOptions currentOptions={grades.options} />;
 };
 
 export default PlotModules;

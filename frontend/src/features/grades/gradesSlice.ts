@@ -1,6 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../../store';
-import { gradesPostRequestBody, grades } from '../../types';
+import {
+  gradesPostRequestBody,
+  grades,
+  PlotModulesOptionsType,
+} from '../../types';
 
 interface GradesState {
   loaded: boolean;
@@ -9,7 +13,22 @@ interface GradesState {
 
 const initialState: GradesState = {
   loaded: false,
-  grades: { data: {}, options: {} },
+  grades: {
+    data: {},
+    options: {
+      dpi: 300,
+      long_module_names: false,
+      no_avg_overall: false,
+      no_avg_unweighted: false,
+      no_avg_weighted: false,
+      no_avgs: false,
+      no_grades: false,
+      no_module_names: false,
+      no_trend: false,
+      title_keep_date: false,
+      title_no_date: false,
+    },
+  },
 };
 
 export const gradesSlice = createSlice({
@@ -23,13 +42,20 @@ export const gradesSlice = createSlice({
     setGradesData: (state, action: PayloadAction<grades>) => {
       state.grades.data = action.payload;
     },
+    setGradesOptions: (
+      state,
+      action: PayloadAction<PlotModulesOptionsType>
+    ) => {
+      state.grades.options = action.payload;
+    },
     setGradesLoaded: (state, action: PayloadAction<boolean>) => {
       state.loaded = action.payload;
     },
   },
 });
 
-export const { resetGrades, setGradesData, setGradesLoaded } = gradesSlice.actions;
+export const { resetGrades, setGradesData, setGradesLoaded } =
+  gradesSlice.actions;
 
 export const selectGradesLoaded = (state: RootState): boolean =>
   state.grades.loaded;
